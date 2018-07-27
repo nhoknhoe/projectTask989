@@ -1,4 +1,6 @@
+
 export class Employee {
+    // private manager:Employee;
     public uuid: string;
     public firstName: string;
     public lastName: string;
@@ -7,6 +9,13 @@ export class Employee {
     public address: string;
     public salary: number;
     public responsibilities: Array<String>;
+
+    // public setManager(manager:Employee){
+    //     this.manager = manager;
+    // }
+    // public getManager(){
+    //     return this.manager;
+    // }
     constructor(){
         this.uuid= '';
         this.firstName='';
@@ -17,4 +26,5 @@ export class Employee {
         this.salary=0;
         this.responsibilities=[];
     }
+    
 }

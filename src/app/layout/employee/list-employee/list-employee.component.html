@@ -40,10 +40,9 @@
                     <i class="fa fa-edit"></i>Sửa</a>&nbsp;
                 <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
                     <i class="fa fa-times"></i> Xóa</button> -->
-                <button type="button" class="btn btn-info btn-lg" (click)="show({id: item.uuid,fname: item.firstName,lname: item.lastName})" >Xóa</button>
-                
+                <button type="button" class="btn btn-info btn-lg" (delete)="onDelete()" (click)="show({id: item.uuid,fname: item.firstName,lname: item.lastName})" >Xóa</button>
             </td>
         </tr>
     </tbody>
 </table>
-<app-delete></app-delete>
+<app-delete (delete)="onDelete($event)" ></app-delete>

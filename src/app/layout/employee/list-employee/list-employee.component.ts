@@ -6,50 +6,27 @@ import { DeleteComponent } from './delete/delete.component';
 
 @Component({
   selector: 'app-list-employee',
-  templateUrl: './list-employee.component.html',
-  styleUrls: ['./list-employee.component.scss']
+  templateUrl: './list-employee.component.html'
 })
-export class ListEmployeeComponent implements OnInit {
-  // @ViewChild(DeleteComponent)
-  // deleteEmployee:DeleteComponent;
-  public dataEmployee: Array<Employee> = [];
 
-  constructor(private dataService: EmployeeService) {}
+export class ListEmployeeComponent implements OnInit {
+  public dataEmployee: Array<Employee> = [];
+  @ViewChild(DeleteComponent)
+  del: DeleteComponent;
+  constructor(private dataService: EmployeeService) { }
   ngOnInit() {
     this.dataEmployee = this.dataService.getLists();
   }
   ngAfterViewInit() {
     this.dataEmployee = this.dataService.getLists();
   }
- 
-  // openModal(){
-    // this.deleteEmployee.openModal();
-    // this.dataEmployee = this.dataService.getLists();
-  // }
-  load(){
-    this.dataEmployee = this.dataService.getLists();
-  }
-
-  @ViewChild(DeleteComponent)
-  del : DeleteComponent;
-
-  outObj:any;
-  show(obj){
-    // console.log(this.del);
-    // debugger;
+  // outObj:any;
+  uuid: string;
+  show(obj) {
     this.del.openModal(obj);
-    this.outObj = obj;
-    debugger;
-    console.log("dataemployee:" + JSON.stringify(this.dataEmployee));
-    debugger;
-    console.log("dataService  :" + JSON.stringify(this.dataService.getLists()) );
+    this.uuid = obj.id;
   }
-    deleted: boolean = false;
-    obj_del: string;
-    onDelete(msg){
-      if(msg){
-          this.deleted = true;
-          this.obj_del = this.outObj.fname + " " + this.outObj.lname;
-      }
-    }
+  onDelete() {
+    this.dataEmployee = this.dataService.remove(this.uuid);
+  }
 }
